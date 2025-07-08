@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Onflow Architecture - Immersive Experience</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap"></noscript>
+    <style>
+        /* All your CSS remains here, unchanged */
+        body { margin: 0; overflow: hidden; background-color: #000000; font-family: 'Montserrat', sans-serif; color: #ebebeb; transition: background-color 0.8s ease-in-out, color 0.8s ease-in-out; }
+        canvas { display: block; }
+        .fixed-ui { position: fixed; z-index: 100; padding: 2em; font-family: 'Montserrat', sans-serif; }
+        #logo-container { top: 0; left: 0; }
+        #logo-container img { width: 60px; height: auto; filter: invert(1); transition: filter 0.8s ease-in-out; }
+        #info-container { top: 0; right: 0; text-align: right; max-width: 300px; font-size: 0.9em; line-height: 1.6; transition: color 0.8s ease-in-out; }
+        #info-container a { color: #ebebeb; font-weight: bold; text-decoration: none; position: relative; display: inline-block; padding-bottom: 5px; transition: color 0.8s ease-in-out; }
+        #info-container a::after { content: ''; position: absolute; width: 100%; height: 2px; background-color: #ebebeb; bottom: 0; left: 0; transform-origin: left; animation: move-underline 5s infinite linear; transition: background-color 0.8s ease-in-out; }
+        #start-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.9); display: flex; justify-content: center; align-items: center; z-index: 200; cursor: pointer; transition: opacity 0.5s; }
+        #start-overlay h1 { font-family: 'Montserrat', sans-serif; font-size: 1.5em; font-weight: 400; color: white; text-shadow: 0 0 10px rgba(255, 255, 255, 0.5); }
+        .toggle-button { background: #444; color: white; border: none; width: 50px; height: 50px; border-radius: 50%; font-size: 1.5em; cursor: pointer; display: flex; justify-content: center; align-items: center; transition: background-color 0.8s ease-in-out, transform 0.3s; }
+        .toggle-button:hover { transform: scale(1.1); }
+        #theme-toggle-container { bottom: 0; left: 0; }
+        #sound-toggle-container { bottom: 0; right: 0; }
+        body.light-mode { background-color: #ebebeb; color: #1a1a1a; }
+        body.light-mode #logo-container img { filter: invert(0); }
+        body.light-mode #info-container a { color: #1a1a1a; }
+        body.light-mode #info-container a::after { background-color: #1a1a1a; }
+        body.light-mode .toggle-button { background-color: #f0f0f0; color: #1a1a1a; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        @keyframes move-underline { 0% { transform: scaleX(0); transform-origin: left; } 45% { transform: scaleX(1); transform-origin: left; } 55% { transform: scaleX(1); transform-origin: right; } 100% { transform: scaleX(0); transform-origin: right; } }
+    </style>
+</head>
+<body>
+    <div id="start-overlay"><h1>Click to Begin</h1></div>
+    <div id="logo-container" class="fixed-ui"><img src="assets/images/Contour.png" alt="Onflow Contour Logo"></div>
+    <div id="info-container" class="fixed-ui"><p>Onflow pioneers sustainable and forward-thinking architectural solutions that bridge human-centric design with environmental consciousness.</p><a href="#" target="_blank">Know More</a></div>
+    <div id="theme-toggle-container" class="fixed-ui"><button id="theme-toggle" class="toggle-button">🌙</button></div>
+    <div id="sound-toggle-container" class="fixed-ui"><button id="sound-toggle" class="toggle-button">🔊</button></div>
+    <canvas id="bg"></canvas>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.7.77/Tone.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/postprocessing/Pass.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/shaders/CopyShader.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/postprocessing/ShaderPass.js"></script>
+
+    <script type="module" src="js/main.js"></script>
+</body>
+</html>
